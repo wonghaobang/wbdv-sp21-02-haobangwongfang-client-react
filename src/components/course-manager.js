@@ -7,9 +7,10 @@ import courseService, {findAllCourses, deleteCourse} from "../services/course-se
 
 // CourseManager has three things- CourseTable, CourseGrid, CourseEditor
 class CourseManager extends React.Component {
-    // when things change, I put it inside state?
+    // when things change, I put it inside state
     state = {
-        courses: []
+        courses: [],
+        title: ""
     }
 
     // this part is initialization, we don't care what the list of old courses was. This is the latest and newest list
@@ -35,9 +36,15 @@ class CourseManager extends React.Component {
             })))
     }
 
+    getValue = (event) => {
+        this.setState({
+            title: event.target.value
+        })
+    }
+
     addCourse = () => {
         const newCourse = {
-            title: "New Course",
+            title: this.state.title,
             owner: "me",
             lastModified: "1/1/2021"
         }
@@ -54,6 +61,11 @@ class CourseManager extends React.Component {
                     course      // appending the course
                 ]
             })))
+
+        this.setState((prevState) => ({
+            ...prevState,
+                title: ""
+        }))
     }
 
 
@@ -91,38 +103,52 @@ class CourseManager extends React.Component {
     render() {
         return (
             <div>
-                {/*<h1>Course Manager</h1>*/}
-                <div className="row p-1 mb-2">
-                    <div className="col-1">
-                        <i className="fas fa-bars fa-2x"></i>
-                    </div>
-                    <div className="col-2 d-none d-xl-block" style={{"font-size": "25px"}}>
-                        Course Manager
-                    </div>
-                    <div className="col-8">
-                        <input className="form-control"
-                               placeholder="New Course Title"/>
-                    </div>
-                    <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
-                        <i className="fas fa-circle fa-stack-2x"></i>
-                        <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
-                    </div>
-                </div>
-
-                {/*<button onClick={this.addCourse}>Add Course</button>*/}
 
                 <Route path="/courses/table">
+                    <div className="row p-1 mb-2">
+                        <div className="col-1">
+                            <i className="fas fa-bars fa-2x"></i>
+                        </div>
+                        <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>
+                            Course Manager
+                        </div>
+                        <div className="col-8">
+                            <input type="text" className="form-control" placeholder="New Course Title" onChange={this.getValue}/>
+                        </div>
+                        <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
+                        </div>
+                    </div>
                     <CourseTable
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
+
+
                 </Route>
                 <Route path="/courses/grid">
+                    <div className="row p-1 mb-2">
+                        <div className="col-1">
+                            <i className="fas fa-bars fa-2x"></i>
+                        </div>
+                        <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>
+                            Course Manager
+                        </div>
+                        <div className="col-8">
+                            <input type="text" className="form-control" placeholder="New Course Title" onChange={this.getValue}/>
+                        </div>
+                        <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
+                        </div>
+                    </div>
                     <CourseGrid
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
+
                 <Route path="/courses/editor"
                        render={(props) => <CourseEditor props={props}/>}>
                 </Route>
