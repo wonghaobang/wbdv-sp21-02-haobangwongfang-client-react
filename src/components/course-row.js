@@ -13,11 +13,13 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         }
         updateCourse(newCourse)
     }
+
     return (<tr>
         <td>
             {
                 !editing &&
-                <Link to="/courses/editor">
+                <Link to="/courses/editor" style={{"color": "black"}}>
+                    <i className="fas fa-file pr-2 text-primary"></i>
                     {title}
                 </Link>
             }
@@ -28,12 +30,13 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
                        className="form-control"/>
             }
         </td>
-        <td>{owner}</td>
-        <td>{lastModified}</td>
+        <td className="d-none d-sm-table-cell">{owner}</td>
+        <td className="d-none d-md-table-cell">{lastModified}</td>
+        <td></td>
         <td>
-            <i onClick={() => deleteCourse(course)} className="fas fa-times" style={{"color": "red"}}></i>
-            {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}
-            {editing && <i onClick={() => saveTitle()} className="fas fa-check"></i>}
+            { editing && <i onClick={() => saveTitle()} className="fas fa-check" style={{"color": "green"}}></i> }
+            { editing && <i onClick={() => deleteCourse(course)} className="fas fa-times" style={{"color": "red"}}></i> }
+            { !editing && <i onClick={() => setEditing(true)} className="fas fa-edit" style={{"color": "blue"}}></i> }
         </td>
     </tr>)
 }

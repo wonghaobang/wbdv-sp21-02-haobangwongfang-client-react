@@ -92,7 +92,7 @@ class CourseManager extends React.Component {
         return (
             <div>
                 {/*<h1>Course Manager</h1>*/}
-                <div className="row p-1">
+                <div className="row p-1 mb-2">
                     <div className="col-1">
                         <i className="fas fa-bars fa-2x"></i>
                     </div>
@@ -103,13 +103,13 @@ class CourseManager extends React.Component {
                         <input className="form-control"
                                placeholder="New Course Title"/>
                     </div>
-                    <div className="col-1 fa-stack fa-lg" style={{"color": "red"}}>
+                    <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
                         <i className="fas fa-circle fa-stack-2x"></i>
                         <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
                     </div>
                 </div>
 
-                <button onClick={this.addCourse}>Add Course</button>
+                {/*<button onClick={this.addCourse}>Add Course</button>*/}
 
                 <Route path="/courses/table">
                     <CourseTable
@@ -119,6 +119,7 @@ class CourseManager extends React.Component {
                 </Route>
                 <Route path="/courses/grid">
                     <CourseGrid
+                        updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
@@ -126,7 +127,7 @@ class CourseManager extends React.Component {
                        render={(props) => <CourseEditor props={props}/>}>
                 </Route>
 
-                <span className="fa-stack fa-2x" style={{"color": "red", "position": "fixed", "bottom": "10px", "right": "10px"}}>
+                <span onClick={this.addCourse} className="fa-stack fa-2x" style={{"color": "red", "position": "fixed", "bottom": "10px", "right": "10px", "cursor": "pointer"}}>
                     <i className="fas fa-circle fa-stack-2x"></i>
                     <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
                 </span>

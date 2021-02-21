@@ -14,13 +14,33 @@ export default class CourseTable extends React.Component {
         return (                 // remember can only return one thing, that's why need to wrap it into one div
             <div>
                 {/*<h2>Course Table</h2>*/}
-                <Link to="/courses/grid">
-                    <i className="fas fa-2x fa-th float-right"></i>
-                </Link>
+                {/*<Link to="/courses/grid">*/}
+                {/*    <i className="fas fa-2x fa-th float-right"></i>*/}
+                {/*</Link>*/}
+
                 <table className="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th scope="col" className="d-none d-sm-table-cell">
+                            Owned by
+                        </th>
+                        <th scope="col" className="d-none d-md-table-cell">
+                            Last modified
+                        </th>
+                        <th scope="col">
+                            <i className="fas fa-sort-alpha-up float-right  pr-3"></i>
+                            <i className="fas fa-folder float-right pr-3"></i>
+                        </th>
+                        <th scope="col">
+                            <Link to="/courses/grid">
+                                <i className="fas fa-th"></i>
+                            </Link>
+                        </th>
+                    </tr>
+                    </thead>
 
                     <tbody>
-
                     {
                         this.props.courses.map((course, ndx) =>
                             <CourseRow
@@ -29,7 +49,7 @@ export default class CourseTable extends React.Component {
                                 // Later on when this comes from the server, we are going to have an id and use that instead
                                 updateCourse={this.props.updateCourse}
                                 deleteCourse={this.props.deleteCourse}
-                                key={ndx}
+                                key={course._id}
                                 course={course}
                                 title={course.title}
                                 owner={course.owner}
