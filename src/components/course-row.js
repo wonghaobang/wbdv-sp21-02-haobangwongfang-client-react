@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
-import {updateCourse} from "../services/course-service";
+// import {updateCourse} from "../services/course-service";
 
 const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, owner}) => {
     const [editing, setEditing] = useState(false)
@@ -31,7 +31,7 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         <td>{owner}</td>
         <td>{lastModified}</td>
         <td>
-            <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
+            <i onClick={() => deleteCourse(course)} className="fas fa-times" style={{"color": "red"}}></i>
             {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}
             {editing && <i onClick={() => saveTitle()} className="fas fa-check"></i>}
         </td>

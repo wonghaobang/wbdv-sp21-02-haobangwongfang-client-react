@@ -38,8 +38,8 @@ class CourseManager extends React.Component {
     addCourse = () => {
         const newCourse = {
             title: "New Course",
-            owner: "New Owner",
-            lastModified: "Never"
+            owner: "me",
+            lastModified: "1/1/2021"
         }
 
         // this is a nono, you can see below two line is calculating new state based on old state
@@ -91,8 +91,26 @@ class CourseManager extends React.Component {
     render() {
         return (
             <div>
-                <h1>Course Manager</h1>
+                {/*<h1>Course Manager</h1>*/}
+                <div className="row p-1">
+                    <div className="col-1">
+                        <i className="fas fa-bars fa-2x"></i>
+                    </div>
+                    <div className="col-2 d-none d-xl-block" style={{"font-size": "25px"}}>
+                        Course Manager
+                    </div>
+                    <div className="col-8">
+                        <input className="form-control"
+                               placeholder="New Course Title"/>
+                    </div>
+                    <div className="col-1 fa-stack fa-lg" style={{"color": "red"}}>
+                        <i className="fas fa-circle fa-stack-2x"></i>
+                        <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
+                    </div>
+                </div>
+
                 <button onClick={this.addCourse}>Add Course</button>
+
                 <Route path="/courses/table">
                     <CourseTable
                         updateCourse={this.updateCourse}
@@ -107,6 +125,12 @@ class CourseManager extends React.Component {
                 <Route path="/courses/editor"
                        render={(props) => <CourseEditor props={props}/>}>
                 </Route>
+
+                <span className="fa-stack fa-2x" style={{"color": "red", "position": "fixed", "bottom": "10px", "right": "10px"}}>
+                    <i className="fas fa-circle fa-stack-2x"></i>
+                    <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
+                </span>
+
             </div>
         );
     }

@@ -14,7 +14,7 @@ const CourseCard = ({course, deleteCourse}) =>
                 <Link to="/courses/editor" className="btn btn-primary">
                     {course.title}
                 </Link>
-                <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
+                <i onClick={() => deleteCourse(course)} className="fas fa-times float-right" style={{"color": "red"}}></i>
             </div>
         </div>
     </div>

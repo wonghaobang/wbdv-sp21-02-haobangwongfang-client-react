@@ -13,16 +13,13 @@ export default class CourseTable extends React.Component {
     render() {
         return (                 // remember can only return one thing, that's why need to wrap it into one div
             <div>
-                <h2>Course Table</h2>
+                {/*<h2>Course Table</h2>*/}
                 <Link to="/courses/grid">
                     <i className="fas fa-2x fa-th float-right"></i>
                 </Link>
                 <table className="table">
+
                     <tbody>
-                    {/*<CourseRow title="CS1234" owner="alice" lastModified={"1/12/34"}/>*/}
-                    {/*<CourseRow title="CS2345" owner="bob" lastModified={"2/23/24"}/>*/}
-                    {/*<CourseRow title="CS3456" owner="charlie" lastModified={"3/22/14"}/>*/}
-                    {/*<CourseRow title="CS4567" owner="dan" lastModified={"4/12/36"}/>*/}
 
                     {
                         this.props.courses.map((course, ndx) =>

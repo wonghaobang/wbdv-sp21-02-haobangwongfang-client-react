@@ -9,12 +9,13 @@ const CourseGrid = ({courses, deleteCourse}) =>
             <i className="fas fa-list fa-2x float-right"></i>
         </Link>
         <h2>Course Grid {courses.length}</h2>
+
         <div className="row">
             {
                 courses.map((course, ndx) =>
                     <CourseCard
                         deleteCourse={deleteCourse}
-                        key = {ndx}
+                        key={ndx}
                         course={course}/>
                 )
             }
