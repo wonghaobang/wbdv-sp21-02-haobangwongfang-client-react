@@ -35,9 +35,9 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         <td className="d-none d-md-table-cell">{lastModified}</td>
         <td></td>
         <td>
-            { editing && <i onClick={() => saveTitle()} className="fas fa-check text-success"></i> }
-            { editing && <i onClick={() => deleteCourse(course)} className="fas fa-times text-danger"></i> }
-            { !editing && <i onClick={() => setEditing(true)} className="fas fa-edit text-primary"></i> }
+            { editing && <i onClick={() => saveTitle()} className="fas fa-check wbdv-check-icon2"></i> }
+            { editing && <i onClick={() => deleteCourse(course)} className="fas fa-times wbdv-delete-icon2"></i> }
+            { !editing && <i onClick={() => setEditing(true)} className="fas fa-edit wbdv-edit-icon2"></i> }
         </td>
     </tr>)
 }

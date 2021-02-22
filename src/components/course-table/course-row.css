@@ -1,18 +1,22 @@
 .wbdv-delete-icon2 {
     color: red;
+    cursor: pointer;
 }
 
 
 .wbdv-check-icon2 {
     color: green;
+    cursor: pointer;
 }
 
 
 .wbdv-edit-icon2 {
     color: blue;
+    cursor: pointer;
 }
 
 
 .link-black {
     color: black;
+    cursor: pointer;
 }
