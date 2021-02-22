@@ -1,6 +1,7 @@
 import React from 'react'
 import CourseRow from "./course-row";
 import {Link} from "react-router-dom";
+import './course-table.css';
 
 class CourseTable extends React.Component {
 
@@ -16,18 +17,18 @@ class CourseTable extends React.Component {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th scope="col" className="d-none d-sm-table-cell">
+                        <th scope="col" className="header">Title</th>
+                        <th scope="col" className="d-none d-sm-table-cell header">
                             Owned by
                         </th>
-                        <th scope="col" className="d-none d-md-table-cell">
+                        <th scope="col" className="d-none d-md-table-cell header">
                             Last modified
                         </th>
-                        <th scope="col">
+                        <th scope="col" className="header">
                             <i className="fas fa-sort-alpha-up float-right pr-3"></i>
                             <i className="fas fa-folder float-right pr-3"></i>
                         </th>
-                        <th scope="col">
+                        <th scope="col" className="header">
                             <Link to="/courses/grid">
                                 <i className="fas fa-th"></i>
                             </Link>
