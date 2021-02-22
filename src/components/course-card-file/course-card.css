@@ -1,0 +1,25 @@
+.wbdv-delete-icon {
+    color: red;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+
+.wbdv-check-icon {
+    color: green;
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    cursor: pointer;
+}
+
+
+.wbdv-edit-icon {
+    color: blue;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import './course-card.css';
 
 
 const CourseCard = ({course, deleteCourse, updateCourse}) => {
@@ -40,9 +41,9 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
                     {course.title}
                 </Link>
 
-                {editing && <i onClick={() => deleteCourse(course)} className="fas fa-times float-right" style={{"color": "red", "position": "absolute", "top": "15px", "right": "15px"}}></i>}
-                {editing && <i onClick={() => saveTitle()} className="fas fa-check float-right" style={{"color": "green", "position": "absolute", "top": "15px", "right": "30px"}}></i>}
-                {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit float-right" style={{"color": "blue", "position": "absolute", "bottom": "10px", "right": "10px"}}></i>}
+                {editing && <i onClick={() => deleteCourse(course)} className="fas fa-times float-right wbdv-delete-icon"></i>}
+                {editing && <i onClick={() => saveTitle()} className="fas fa-check float-right wbdv-check-icon"></i>}
+                {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit float-right wbdv-edit-icon"></i>}
             </div>
         </div>
     </div>)

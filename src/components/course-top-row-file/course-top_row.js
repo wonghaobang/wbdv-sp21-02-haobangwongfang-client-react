@@ -1,4 +1,5 @@
 import React from 'react'
+import './course-top-row.css';
 
 
 const CourseTopRow = ({addCourse, getValue}) =>
@@ -6,16 +7,21 @@ const CourseTopRow = ({addCourse, getValue}) =>
         <div className="col-1">
             <i className="fas fa-bars fa-2x"></i>
         </div>
-        <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>
+        <div className="col-2 d-none d-xl-block wbdv-font-size-25">
             Course Manager
         </div>
         <div className="col-8">
             <input type="text" className="form-control" placeholder="New Course Title" onChange={getValue}/>
         </div>
-        <div onClick={addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
+        <div onClick={addCourse} className="col-1 fa-stack fa-lg plus-icon1">
             <i className="fas fa-circle fa-stack-2x"></i>
             <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
         </div>
+
+        <span onClick={addCourse} className="fa-stack fa-2x plus-icon2">
+                    <i className="fas fa-circle fa-stack-2x"></i>
+                    <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
+        </span>
     </div>
 
 

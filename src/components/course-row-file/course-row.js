@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
-// import {updateCourse} from "../services/course-service";
+import './course-row.css';
+
 
 const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, owner}) => {
     const [editing, setEditing] = useState(false)
@@ -18,7 +19,7 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         <td>
             {
                 !editing &&
-                <Link to="/courses/editor" style={{"color": "black"}}>
+                <Link to="/courses/editor" className="link-black">
                     <i className="fas fa-file pr-2 text-primary"></i>
                     {title}
                 </Link>
@@ -34,9 +35,9 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         <td className="d-none d-md-table-cell">{lastModified}</td>
         <td></td>
         <td>
-            { editing && <i onClick={() => saveTitle()} className="fas fa-check" style={{"color": "green"}}></i> }
-            { editing && <i onClick={() => deleteCourse(course)} className="fas fa-times" style={{"color": "red"}}></i> }
-            { !editing && <i onClick={() => setEditing(true)} className="fas fa-edit" style={{"color": "blue"}}></i> }
+            { editing && <i onClick={() => saveTitle()} className="fas fa-check text-success"></i> }
+            { editing && <i onClick={() => deleteCourse(course)} className="fas fa-times text-danger"></i> }
+            { !editing && <i onClick={() => setEditing(true)} className="fas fa-edit text-primary"></i> }
         </td>
     </tr>)
 }
