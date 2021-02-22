@@ -1,10 +1,10 @@
 import React from 'react'
-import CourseTable from "./course-table";
-import CourseGrid from "./course-grid";
-import CourseEditor from "./course-editor-file/course-editor";
+import CourseTable from "./course-table/course-table";
+import CourseGrid from "./course-grid/course-grid";
+import CourseEditor from "./course-editor/course-editor";
 import {Route} from "react-router-dom"
 import courseService from "../services/course-service";
-import CourseTopRow from "./course-top-row-file/course-top_row";
+import CourseTopRow from "./course-top_row";
 
 // CourseManager has three things- CourseTable, CourseGrid, CourseEditor
 class CourseManager extends React.Component {
