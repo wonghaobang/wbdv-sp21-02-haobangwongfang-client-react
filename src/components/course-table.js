@@ -11,13 +11,8 @@ export default class CourseTable extends React.Component {
 
 
     render() {
-        return (                 // remember can only return one thing, that's why need to wrap it into one div
+        return (
             <div>
-                {/*<h2>Course Table</h2>*/}
-                {/*<Link to="/courses/grid">*/}
-                {/*    <i className="fas fa-2x fa-th float-right"></i>*/}
-                {/*</Link>*/}
-
                 <table className="table">
                     <thead>
                     <tr>
@@ -29,7 +24,7 @@ export default class CourseTable extends React.Component {
                             Last modified
                         </th>
                         <th scope="col">
-                            <i className="fas fa-sort-alpha-up float-right  pr-3"></i>
+                            <i className="fas fa-sort-alpha-up float-right pr-3"></i>
                             <i className="fas fa-folder float-right pr-3"></i>
                         </th>
                         <th scope="col">

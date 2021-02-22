@@ -1,0 +1,29 @@
+li a {
+    /* this color is same as bg-muted */
+    color: #999999;
+}
+
+li a:hover {
+    color: white;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.wbdv-bg-lessdark-grey {
+    background-color: #535556;
+}
+
+.leftside {
+    /* this color is same as bg-dark */
+    background-color: #343a40;
+    height: 100vh;
+    width: 100%;
+}
+
+.rightside {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+}

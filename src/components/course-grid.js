@@ -6,11 +6,6 @@ import {Link} from "react-router-dom";
 const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
     <div>
 
-        {/*<Link to="/courses/table">*/}
-        {/*    <i className="fas fa-list fa-2x float-right"></i>*/}
-        {/*</Link>*/}
-        {/*<h2>Course Grid {courses.length}</h2>*/}
-
         <div className="row mb-3">
             <div className="col d-none d-md-block font-weight-bold">
                 Recent Documents
@@ -39,6 +34,7 @@ const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
                         deleteCourse={deleteCourse}
                         key={course._id}
                         course={course}/>
+
                 )
             }
         </div>

@@ -4,6 +4,7 @@ import CourseGrid from "./course-grid";
 import CourseEditor from "./course-editor";
 import {Route} from "react-router-dom"
 import courseService, {findAllCourses, deleteCourse} from "../services/course-service";
+import CourseTopRow from "./course-top_row";
 
 // CourseManager has three things- CourseTable, CourseGrid, CourseEditor
 class CourseManager extends React.Component {
@@ -37,6 +38,7 @@ class CourseManager extends React.Component {
     }
 
     getValue = (event) => {
+        console.log(event.target.value)
         this.setState({
             title: event.target.value
         })
@@ -62,6 +64,7 @@ class CourseManager extends React.Component {
                 ]
             })))
 
+        // reset the state back to empty string ""
         this.setState((prevState) => ({
             ...prevState,
                 title: ""
@@ -105,21 +108,24 @@ class CourseManager extends React.Component {
             <div>
 
                 <Route path="/courses/table">
-                    <div className="row p-1 mb-2">
-                        <div className="col-1">
-                            <i className="fas fa-bars fa-2x"></i>
-                        </div>
-                        <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>
-                            Course Manager
-                        </div>
-                        <div className="col-8">
-                            <input type="text" className="form-control" placeholder="New Course Title" onChange={this.getValue}/>
-                        </div>
-                        <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
-                            <i className="fas fa-circle fa-stack-2x"></i>
-                            <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
-                        </div>
-                    </div>
+                    {/*<div className="row p-1 mb-2">*/}
+                    {/*    <div className="col-1">*/}
+                    {/*        <i className="fas fa-bars fa-2x"></i>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>*/}
+                    {/*        Course Manager*/}
+                    {/*    </div>*/}
+                    {/*    <div className="col-8">*/}
+                    {/*        <input type="text" className="form-control" placeholder="New Course Title" onChange={this.getValue}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>*/}
+                    {/*        <i className="fas fa-circle fa-stack-2x"></i>*/}
+                    {/*        <i className="fas fa-plus fa-stack-1x fa-inverse"></i>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <CourseTopRow
+                        addCourse={this.addCourse}
+                        getValue={this.getValue}/>
                     <CourseTable
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
@@ -128,21 +134,24 @@ class CourseManager extends React.Component {
 
                 </Route>
                 <Route path="/courses/grid">
-                    <div className="row p-1 mb-2">
-                        <div className="col-1">
-                            <i className="fas fa-bars fa-2x"></i>
-                        </div>
-                        <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>
-                            Course Manager
-                        </div>
-                        <div className="col-8">
-                            <input type="text" className="form-control" placeholder="New Course Title" onChange={this.getValue}/>
-                        </div>
-                        <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>
-                            <i className="fas fa-circle fa-stack-2x"></i>
-                            <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
-                        </div>
-                    </div>
+                    {/*<div className="row p-1 mb-2">*/}
+                    {/*    <div className="col-1">*/}
+                    {/*        <i className="fas fa-bars fa-2x"></i>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="col-2 d-none d-xl-block" style={{"fontSize": "25px"}}>*/}
+                    {/*        Course Manager*/}
+                    {/*    </div>*/}
+                    {/*    <div className="col-8">*/}
+                    {/*        <input type="text" className="form-control" placeholder="New Course Title" onChange={this.getValue}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div onClick={this.addCourse} className="col-1 fa-stack fa-lg" style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}}>*/}
+                    {/*        <i className="fas fa-circle fa-stack-2x"></i>*/}
+                    {/*        <i className="fas fa-plus fa-stack-1x fa-inverse"></i>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <CourseTopRow
+                        addCourse={this.addCourse}
+                        getValue={this.getValue}/>
                     <CourseGrid
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
