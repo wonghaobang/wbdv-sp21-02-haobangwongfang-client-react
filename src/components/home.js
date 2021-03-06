@@ -7,6 +7,7 @@ export default () =>
         <h1>Home</h1>
 
         <div className="list-group">
+
             <Link to="/courses/table" className="list-group-item">
                 Courses Table
             </Link>
@@ -16,6 +17,7 @@ export default () =>
             <Link to="/courses/editor" className="list-group-item">
                 Course Editor
             </Link>
+
         </div>
 
     </>

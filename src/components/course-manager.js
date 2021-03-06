@@ -70,7 +70,7 @@ class CourseManager extends React.Component {
         // reset the state back to empty string ""
         this.setState((prevState) => ({
             ...prevState,
-                title: ""
+            title: ""
         }))
     }
 
@@ -113,7 +113,8 @@ class CourseManager extends React.Component {
                 <Route path="/courses/table">
                     <CourseTopRow
                         addCourse={this.addCourse}
-                        getValue={this.getValue}/>
+                        getValue={this.getValue}
+                        title={this.state.title}/>
                     <CourseTable
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
@@ -123,15 +124,20 @@ class CourseManager extends React.Component {
                 <Route path="/courses/grid">
                     <CourseTopRow
                         addCourse={this.addCourse}
-                        getValue={this.getValue}/>
+                        getValue={this.getValue}
+                        title={this.state.title}/>
                     <CourseGrid
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
 
-                <Route path="/courses/editor"
-                       render={(props) => <CourseEditor props={props}/>}>
+                <Route path={[
+                    "/courses/editor/:courseID",
+                    "/courses/editor/:courseID/:moduleID",
+                    "/courses/editor/:courseID/:moduleID/:lessonID"]}
+                       exact={true}
+                       render={(props) => <CourseEditor {...props}/>}>
                 </Route>
 
             </div>

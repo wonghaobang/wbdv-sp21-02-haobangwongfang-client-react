@@ -19,7 +19,7 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         <td>
             {
                 !editing &&
-                <Link to="/courses/editor" className="link-black">
+                <Link to={`/courses/editor/${course._id}`} className="link-black">
                     <i className="fas fa-file pr-2 text-primary"></i>
                     {title}
                 </Link>

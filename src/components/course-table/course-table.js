@@ -14,7 +14,7 @@ class CourseTable extends React.Component {
     render() {
         return (
             <div>
-                <table className="table">
+                <table className="table table-hover">
                     <thead>
                     <tr>
                         <th scope="col" className="header">Title</th>

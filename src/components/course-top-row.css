@@ -3,8 +3,6 @@
 }
 
 
-/*style={{"color": "red", "position": "absolute", "top": "2px", "right": "10px", "cursor": "pointer"}*/
-
 .plus-icon1 {
     color: red;
     position: absolute;
@@ -13,7 +11,6 @@
     cursor: pointer;
 }
 
-/*style={{"color": "red", "position": "fixed", "bottom": "10px", "right": "10px", "cursor": "pointer"}}*/
 
 .plus-icon2 {
     color: red;
