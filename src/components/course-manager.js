@@ -78,25 +78,6 @@ class CourseManager extends React.Component {
     deleteCourse = (courseToDelete) => {
 
         courseService.deleteCourse(courseToDelete._id).then(status => {
-            // whenever you set a state based on a previous state, the below is not good practice
-            // const newCourses = this.state.courses.filter(course => course !== courseToDelete)
-            // this.setState({
-            //     courses: newCourses
-            // })
-
-            // whenever next state is based on a previous state, always follow this syntax of a function...prevState => {
-            // this way guarantees the synchronicity of the operations/events. There might be multiple things happening at the same time
-            // this make sure that things occur in the order that they were meant to happen
-            // this.setState((prevState) => {
-            //     // copy over everything that was in the previous state first before I go on and change courses
-            //     // If I only do nextState = {} and modify the course state, then I will lose all the other states
-            //     let nextState = {...prevState}
-            //     nextState.courses = prevState.courses.filter(course => course !== courseToDelete)
-            //     return nextState
-            // })
-
-
-            // another syntax
             this.setState((prevState) => ({
                 ...prevState,
                 courses: prevState.courses.filter(course => course !== courseToDelete)
@@ -105,12 +86,11 @@ class CourseManager extends React.Component {
         })
     }
 
-
     render() {
         return (
             <div>
 
-                <Route path="/courses/table">
+                <Route path="/courses/table" exact={true}>
                     <CourseTopRow
                         addCourse={this.addCourse}
                         getValue={this.getValue}
@@ -121,7 +101,7 @@ class CourseManager extends React.Component {
                         courses={this.state.courses}/>
                 </Route>
 
-                <Route path="/courses/grid">
+                <Route path="/courses/grid" exact={true}>
                     <CourseTopRow
                         addCourse={this.addCourse}
                         getValue={this.getValue}
@@ -132,10 +112,20 @@ class CourseManager extends React.Component {
                         courses={this.state.courses}/>
                 </Route>
 
-                <Route path={[
-                    "/courses/editor/:courseID",
-                    "/courses/editor/:courseID/:moduleID",
-                    "/courses/editor/:courseID/:moduleID/:lessonID"]}
+                <Route path=
+                        /*
+                           {[
+                               "/courses/editor/:courseId",
+                               "/courses/editor/:courseId/:moduleId",
+                               "/courses/editor/:courseId/:moduleId/:lessonId"
+                           ]} */
+
+                       {[
+                           "/courses/:layout/edit/:courseId",
+                           "/courses/:layout/edit/:courseId/modules/:moduleId",
+                           "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                           "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"
+                       ]}
                        exact={true}
                        render={(props) => <CourseEditor {...props}/>}>
                 </Route>

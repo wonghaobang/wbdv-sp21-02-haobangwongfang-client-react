@@ -4,6 +4,7 @@ import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
 import lessonService from '../services/lesson-service'
 
+
 const LessonTabs = ({
                         lessons = [
                             {_id: "123", title: "Lesson A"},
@@ -11,60 +12,96 @@ const LessonTabs = ({
                             {_id: "345", title: "Lesson C"}
                         ],
                         findLessonsForModule,
-                        createLessonForModule
+                        createLesson,
+                        deleteLesson = (item) => alert("delete " + item._id),
+                        updateLesson = (lesson) => alert("delete " + lesson._id)
                     }) => {
-    const {courseID, moduleID, lessonID} = useParams()
+    const {courseId, moduleId, lessonId, layout} = useParams()
     useEffect(() => {
-        console.log("LOAD LESSONS FOR MODULE: " + moduleID)
-        if (moduleID !== "undefined" && typeof moduleID !== "undefined") {
-            findLessonsForModule(moduleID)
+        console.log("LOAD LESSONS FOR MODULE: " + moduleId)
+        if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
+            console.log("moduleID is not undefined")
+            findLessonsForModule(moduleId)
         }
-    }, [moduleID])
+    }, [moduleId])
+
     return (
         <div>
             <h2>Lessons</h2>
             <ul className="nav nav-tabs">
                 {
                     lessons.map(lesson =>
-                        <li className="nav-item">
+                        <li className="nav-item" key={lesson._id}>
                             <EditableItem
-                                active={lesson._id === lessonID}
-                                to={`/courses/editor/${courseID}/${moduleID}/${lesson._id}`}
+                                active={lesson._id === lessonId}
+                                // to={`/courses/editor/${courseId}/${moduleId}/${lesson._id}`}
+                                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
+                                updateItem={updateLesson}
+                                deleteItem={deleteLesson}
+                                // key={lesson._id}
                                 item={lesson}/>
+
                         </li>
                     )
                 }
                 <li>
-                    <i onClick={() => createLessonForModule(moduleID)} className="fas fa-plus"></i>
+                    {/*<i onClick={() => createLessonForModule(moduleId)} className="fas fa-plus fa-2x"></i>*/}
+                    <i onClick={() => {moduleId === undefined ? alert("pick a module first") : createLesson(moduleId)}}
+                       className="fas fa-plus fa-2x text-primary"></i>
                 </li>
             </ul>
         </div>)
 }
 
+
+
 const stpm = (state) => ({
     lessons: state.lessonReducer.lessons
 })
 
+
+
 const dtpm = (dispatch) => ({
-    findLessonsForModule: (moduleID) => {
-        console.log("LOAD LESSONS FOR MODULE")
-        console.log(moduleID)
-        lessonService.findLessonsForModule(moduleID)
-            .then(lessons => dispatch({
-                type: "FIND_LESSONS",
-                // lessons: lessons        // prof just used lessons as shortcut
-                lessons
+    findLessonsForModule: (moduleId) => {
+        // console.log("LOAD LESSONS FOR MODULE")
+        // console.log(moduleId)
+        lessonService.findLessonsForModule(moduleId)
+            .then(theLessons => dispatch({
+                type: "FIND_LESSONS_FOR_MODULE",
+                lessons: theLessons
+                // lessons   (prof just used lessons as shortcut)
             }))
     },
-    createLessonForModule: (moduleID) => {
-        console.log("CREATE LESSON FOR MODULE: " + moduleID)
-        lessonService.createLessonForModule(moduleID, {title: "New Lesson"})
-            .then(lesson => dispatch({
+
+    createLesson: (moduleId) => {
+        // console.log("CREATE LESSON FOR MODULE: " + moduleId)
+        lessonService.createLesson(moduleId, {title: "New Lesson"})
+            .then(theActualLesson => dispatch({
                 type: "CREATE_LESSON",
-                // lesson: lesson
-                lesson
+                lesson: theActualLesson
+                // lesson   (prof just used lessons as shortcut)
             }))
-    }
+    },
+
+    updateLesson: (lesson) => {
+        lessonService.updateLesson(lesson._id, lesson)
+            .then(status => dispatch({
+                type: "UPDATE_LESSON",
+                lessonToUpdate: lesson      // prof just used module (shortcut of module: module)
+                // module
+            }))
+    },
+
+    deleteLesson: (item) => {
+        lessonService.deleteLesson(item._id)
+            .then(status => dispatch({
+                type: "DELETE_LESSON",
+                lessonToDelete: item
+            }))
+    },
+
+
+
 })
 
 export default connect(stpm, dtpm)(LessonTabs)

@@ -1,10 +1,8 @@
-// const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses";
 const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/001034982/courses";
-// const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/jannunzi/modules";
 const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/001034982/modules";
 
 
-export const createModuleForCourse = (courseId, module) =>
+export const createModule = (courseId, module) =>
     fetch(`${COURSES_URL}/${courseId}/modules`, {
         method: "POST",
         body: JSON.stringify(module),
@@ -40,7 +38,7 @@ export const deleteModule = (moduleId) =>
 
 const api = {
     findModulesForCourse,
-    createModuleForCourse,
+    createModule,
     deleteModule,
     updateModule
 }

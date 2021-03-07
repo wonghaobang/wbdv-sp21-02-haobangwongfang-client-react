@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import './course-card.css';
 
 
-const CourseCard = ({course, deleteCourse, updateCourse}) => {
+const CourseCard = ({course, deleteCourse, updateCourse, to}) => {
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(course.title)
     const saveTitle = () => {
@@ -37,7 +37,8 @@ const CourseCard = ({course, deleteCourse, updateCourse}) => {
                     the bulk of the card's content.
                 </p>
 
-                <Link to="/courses/editor" className="btn btn-primary">
+                {/*<Link to="/courses/editor" className="btn btn-primary">*/}
+                <Link to={to} className="btn btn-primary">
                     {course.title}
                 </Link>
 

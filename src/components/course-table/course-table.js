@@ -7,7 +7,7 @@ class CourseTable extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log(props)
+        // console.log(props)
     }
 
 
@@ -50,6 +50,7 @@ class CourseTable extends React.Component {
                                 title={course.title}
                                 owner={course.owner}
                                 lastModified={course.lastModified}
+                                to={`/courses/table/edit/${course._id}`}
                             />)
                     }
                     </tbody>

@@ -33,7 +33,10 @@ const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
                         updateCourse={updateCourse}
                         deleteCourse={deleteCourse}
                         key={course._id}
-                        course={course}/>
+                        course={course}
+                        to={`/courses/grid/edit/${course._id}`}
+                    />
+
 
                 )
             }

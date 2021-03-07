@@ -1,8 +1,7 @@
-// const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/jannunzi/modules";
 const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/001034982/modules";
+const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/001034982/lessons";
 
-
-export const createLessonForModule = (moduleId, lesson) =>
+export const createLesson = (moduleId, lesson) =>
     fetch(`${MODULES_URL}/${moduleId}/lessons`, {
         method: "POST",
         body: JSON.stringify(lesson),
@@ -18,7 +17,33 @@ export const findLessonsForModule = (moduleId) =>
         .then(response => response.json())
 
 
-export default {
+
+export const updateLesson = (lessonId, lesson) =>
+    fetch(`${LESSONS_URL}/${lessonId}`, {
+        method: "PUT",
+        body: JSON.stringify(lesson),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+
+
+export const deleteLesson = (lessonId) =>
+    fetch(`${LESSONS_URL}/${lessonId}`, {
+        method: "DELETE"
+    })
+        .then(response => response.json())
+
+
+
+
+const api = {
     findLessonsForModule,
-    createLessonForModule
+    createLesson,
+    deleteLesson,
+    updateLesson
 }
+
+
+export default api

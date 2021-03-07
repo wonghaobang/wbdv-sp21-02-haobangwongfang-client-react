@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import './course-row.css';
 
 
-const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, owner}) => {
+const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, owner, to}) => {
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
     const saveTitle = () => {
@@ -19,7 +19,8 @@ const CourseRow = ({deleteCourse, updateCourse, course, lastModified, title, own
         <td>
             {
                 !editing &&
-                <Link to={`/courses/editor/${course._id}`} className="link-black">
+                // <Link to={`/courses/editor/${course._id}`} className="link-black">
+                <Link to={to} className="link-black">
                     <i className="fas fa-file pr-2 text-primary"></i>
                     {title}
                 </Link>

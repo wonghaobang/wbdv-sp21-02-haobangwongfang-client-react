@@ -1,4 +1,3 @@
-import {act} from "@testing-library/react";
 
 const initialState = {
 
@@ -55,6 +54,7 @@ const moduleReducer = (state=initialState, action) => {
                     }
                 })
             }
+
         default:
             return state
     }
