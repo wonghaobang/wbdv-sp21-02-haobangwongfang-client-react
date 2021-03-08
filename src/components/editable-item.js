@@ -26,8 +26,10 @@ const EditableItem = (
                 <>
                     <Link className={`nav-link ${active?'active':''} d-inline`} to={to}>
                         {item.title}
+                        {/*putting it below will make clicking on the edit icon the new active item, which I don't think is correct*/}
+                        {/*<i onClick={() => setEditing(true)} className="fas fa-pencil-alt float-right"></i>*/}
                     </Link>
-                    <i onClick={() => setEditing(true)} className="fas fa-edit float-right"></i>
+                    <i onClick={() => setEditing(true)} className="fas fa-pencil-alt float-right"></i>
                 </>
             }
 
@@ -45,7 +47,7 @@ const EditableItem = (
                         setEditing(false)
                         updateItem(cachedItem)
                     }} className="fas fa-check float-right"></i>
-                    <i onClick={() => deleteItem(item)} className="fas fa-times float-right pr-3"></i>
+                    <i onClick={() => deleteItem(item)} className="fas fa-times pr-1 float-right"></i>
                 </>
             }
 

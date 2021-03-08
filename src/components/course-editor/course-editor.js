@@ -36,14 +36,15 @@ const CourseEditor = ({history}) => {
             <div>
                 <h2>
                     <Link to="/courses/table">
-                        <i onClick={() => console.log("Hao says moduleID: " + moduleId + ", courseID: " + courseId)} className="fas fa-arrow-left"></i>
+                        <i onClick={() => console.log(`clicking the red x button: ${courseId}, moduleId: ${moduleId}, lessonId: ${lessonId}, topicId: ${topicId}`)} className="fas fa-times text-danger pr-3"></i>
                     </Link>
-                    Course Editor {courseId} {moduleId} {lessonId} {topicId}
-                    <i onClick={() => history.goBack()}
-                       className="fas fa-times float-right">
-                    </i>
+                    {currentCourse}
+                    {/*<i onClick={() => history.goBack()}*/}
+                    {/*   className="fas fa-times float-right">*/}
+                    {/*</i>*/}
                 </h2>
-                <h2>{currentCourse}</h2>
+
+                <h5>courseId: {courseId} -> moduleId: {moduleId} -> lessonId: {lessonId} -> topicId: {topicId}</h5>
 
                 <div className="row">
                     <div className="col-4">

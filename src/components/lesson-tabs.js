@@ -7,21 +7,20 @@ import lessonService from '../services/lesson-service'
 
 const LessonTabs = ({
                         lessons = [
-                            {_id: "123", title: "Lesson A"},
-                            {_id: "234", title: "Lesson B"},
-                            {_id: "345", title: "Lesson C"}
+                            {_id: "444", title: "Lesson A"},
+                            {_id: "555", title: "Lesson B"},
+                            {_id: "666", title: "Lesson C"}
                         ],
                         findLessonsForModule,
-                        createLesson,
-                        deleteLesson = (item) => alert("delete " + item._id),
-                        updateLesson = (lesson) => alert("delete " + lesson._id),
-                        clearLesson = () => console.log("Hao say: clear lesson did not work")
+                        createLesson = () => alert("did not receive createModule from redux, trying to create a new lesson"),
+                        deleteLesson = (item) => alert("did not receive deleteLesson from redux, trying to delete: " + item._id),
+                        updateLesson = (item) => alert("did not receive updateLesson from redux, trying to update: " + item._id),
+                        clearLesson = () => alert("clear lesson did not work")
                     }) => {
+
     const {courseId, moduleId, lessonId, layout} = useParams()
     useEffect(() => {
-        console.log("LOAD LESSONS FOR MODULE: " + moduleId)
         if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
-            console.log("moduleID is not undefined")
             findLessonsForModule(moduleId)
         }
         return () => {
@@ -31,7 +30,6 @@ const LessonTabs = ({
 
     return (
         <div>
-            <h2>Lessons</h2>
             <ul className="nav nav-tabs">
                 {
                     lessons.map(lesson =>
@@ -64,23 +62,18 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     findLessonsForModule: (moduleId) => {
-        // console.log("LOAD LESSONS FOR MODULE")
-        // console.log(moduleId)
         lessonService.findLessonsForModule(moduleId)
             .then(theLessons => dispatch({
                 type: "FIND_LESSONS_FOR_MODULE",
                 lessons: theLessons
-                // lessons   (prof just used lessons as shortcut)
             }))
     },
 
     createLesson: (moduleId) => {
-        // console.log("CREATE LESSON FOR MODULE: " + moduleId)
         lessonService.createLesson(moduleId, {title: "New Lesson"})
             .then(theActualLesson => dispatch({
                 type: "CREATE_LESSON",
                 lesson: theActualLesson
-                // lesson   (prof just used lessons as shortcut)
             }))
     },
 
@@ -88,8 +81,7 @@ const dtpm = (dispatch) => ({
         lessonService.updateLesson(lesson._id, lesson)
             .then(status => dispatch({
                 type: "UPDATE_LESSON",
-                lessonToUpdate: lesson      // prof just used module (shortcut of module: module)
-                // module
+                lessonToUpdate: lesson
             }))
     },
 

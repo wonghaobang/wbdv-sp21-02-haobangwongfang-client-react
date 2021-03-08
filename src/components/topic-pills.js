@@ -7,19 +7,19 @@ import topicService from '../services/topic-service'
 
 const TopicPills = ({
                         topics = [
-                            {_id: "123", title: "topic A"},
-                            {_id: "234", title: "topic B"},
-                            {_id: "345", title: "topic C"}
+                            {_id: "777", title: "topic A"},
+                            {_id: "888", title: "topic B"},
+                            {_id: "999", title: "topic C"}
                         ],
                         findTopicsForLesson,
-                        createTopic,
-                        deleteTopic = (item) => alert("delete " + item._id),
-                        updateTopic = (topic) => alert("delete " + topic._id),
-                        clearTopic = () => console.log("Hao say: clear topic did not work")
+                        createTopic = () => alert("did not receive createTopic from redux, trying to create a new topic"),
+                        deleteTopic = (item) => alert("did not receive deleteTopic from redux, trying to delete: " + item._id),
+                        updateTopic = (item) => alert("did not receive updateTopic from redux, trying to update: " + item._id),
+                        clearTopic = () => alert("clear topic did not work")
                     }) => {
+
     const {courseId, moduleId, lessonId, layout, topicId} = useParams()
     useEffect(() => {
-        console.log("LOAD TOPICS FOR LESSON: " + lessonId)
         if ((moduleId !== "undefined" && typeof moduleId !== "undefined") &&
             (lessonId !== "undefined" && typeof lessonId !== "undefined")) {
             findTopicsForLesson(lessonId)
@@ -29,9 +29,9 @@ const TopicPills = ({
         }
     }, [lessonId], [moduleId])
 
+
     return (
         <div>
-            <h2>Topics</h2>
             <ul className="nav nav-tabs">
                 {
                     topics.map(topic =>
@@ -48,7 +48,7 @@ const TopicPills = ({
 
                 <li>
                     <i onClick={() => {lessonId === undefined || moduleId === undefined ? alert("pick a lesson first") : createTopic(lessonId)}}
-                       className="fas fa-plus fa-2x text-primary"></i>
+                       className="fas fa-plus fa-2x text-primary pl-3"></i>
                 </li>
             </ul>
         </div>)
@@ -64,23 +64,18 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     findTopicsForLesson: (lessonId) => {
-        // console.log("LOAD TOPICS FOR LESSON")
-        // console.log(lessonId)
         topicService.findTopicsForLesson(lessonId)
             .then(theTopics => dispatch({
                 type: "FIND_TOPICS_FOR_LESSON",
                 topics: theTopics
-                // topics   (prof just used topics as shortcut)
             }))
     },
 
     createTopic: (lessonId) => {
-        // console.log("CREATE TOPIC FOR LESSON: " + lessonId)
         topicService.createTopic(lessonId, {title: "New Topic"})
             .then(theActualTopic => dispatch({
                 type: "CREATE_TOPIC",
                 topic: theActualTopic
-                // topics   (prof just used topics as shortcut)
             }))
     },
 
@@ -88,8 +83,7 @@ const dtpm = (dispatch) => ({
         topicService.updateTopic(topic._id, topic)
             .then(status => dispatch({
                 type: "UPDATE_TOPIC",
-                topicToUpdate: topic      // prof just used topics (shortcut)
-                // topics
+                topicToUpdate: topic
             }))
     },
 

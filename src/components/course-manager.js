@@ -54,9 +54,6 @@ class CourseManager extends React.Component {
             lastModified: "1/1/2021"
         }
 
-        // this is a nono, you can see below two line is calculating new state based on old state
-        // this.state.courses.push(newCourse)
-        // this.setState(this.state)
 
         courseService.createCourse(newCourse)
             .then(course => this.setState((prevState) => ({     // below is interpreted as a json object
@@ -113,13 +110,6 @@ class CourseManager extends React.Component {
                 </Route>
 
                 <Route path=
-                        /*
-                           {[
-                               "/courses/editor/:courseId",
-                               "/courses/editor/:courseId/:moduleId",
-                               "/courses/editor/:courseId/:moduleId/:lessonId"
-                           ]} */
-
                        {[
                            "/courses/:layout/edit/:courseId",
                            "/courses/:layout/edit/:courseId/modules/:moduleId",

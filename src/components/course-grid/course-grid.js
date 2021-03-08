@@ -36,8 +36,6 @@ const CourseGrid = ({courses, deleteCourse, updateCourse}) =>
                         course={course}
                         to={`/courses/grid/edit/${course._id}`}
                     />
-
-
                 )
             }
         </div>
