@@ -12,7 +12,7 @@ const lessonReducer = (state = initialState, action) => {
                 ...state,
                 lessons: [
                     ...state.lessons,
-                    action.lesson
+                    action.lessonToCreate
                 ]
             }
 

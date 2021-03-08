@@ -12,7 +12,7 @@ const moduleReducer = (state=initialState, action) => {
                 ...state,
                 modules: [
                     ...state.modules,
-                    action.module
+                    action.moduleToCreate
                 ]
             }
 

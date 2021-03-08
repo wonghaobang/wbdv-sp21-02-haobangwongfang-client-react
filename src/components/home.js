@@ -14,7 +14,7 @@ export default () =>
             <Link to="/courses/grid" className="list-group-item">
                 Courses Grid
             </Link>
-            <Link to="/courses/editor" className="list-group-item">
+            <Link to="/courses/editor" className="list-group-item disabled">
                 Course Editor
             </Link>
 

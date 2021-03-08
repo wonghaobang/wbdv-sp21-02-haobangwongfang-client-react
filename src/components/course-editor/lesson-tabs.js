@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux";
-import EditableItem from "./editable-item";
+import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
-import lessonService from '../services/lesson-service'
+import lessonService from '../../services/lesson-service'
 
 
 const LessonTabs = ({
@@ -11,7 +11,7 @@ const LessonTabs = ({
                             {_id: "555", title: "Lesson B"},
                             {_id: "666", title: "Lesson C"}
                         ],
-                        findLessonsForModule,
+                        findLessonsForModule = (moduleId) => alert("failed to load lessons with moduleId: " + moduleId),
                         createLesson = () => alert("did not receive createModule from redux, trying to create a new lesson"),
                         deleteLesson = (item) => alert("did not receive deleteLesson from redux, trying to delete: " + item._id),
                         updateLesson = (item) => alert("did not receive updateLesson from redux, trying to update: " + item._id),
@@ -40,14 +40,15 @@ const LessonTabs = ({
                                 updateItem={updateLesson}
                                 deleteItem={deleteLesson}
                                 item={lesson}/>
-
                         </li>
                     )
                 }
+
                 <li>
                     <i onClick={() => {moduleId === undefined ? alert("pick a module first") : createLesson(moduleId)}}
                        className="fas fa-plus fa-2x text-primary pl-3"></i>
                 </li>
+
             </ul>
         </div>)
 }
@@ -66,15 +67,17 @@ const dtpm = (dispatch) => ({
             .then(theLessons => dispatch({
                 type: "FIND_LESSONS_FOR_MODULE",
                 lessons: theLessons
-            }))
+            }),
+                console.log("loaded lessons for moduleId: " + moduleId))
     },
 
     createLesson: (moduleId) => {
         lessonService.createLesson(moduleId, {title: "New Lesson"})
             .then(theActualLesson => dispatch({
                 type: "CREATE_LESSON",
-                lesson: theActualLesson
-            }))
+                lessonToCreate: theActualLesson
+            }),
+                console.log("created lesson for moduleId: " + moduleId))
     },
 
     updateLesson: (lesson) => {
@@ -82,21 +85,24 @@ const dtpm = (dispatch) => ({
             .then(status => dispatch({
                 type: "UPDATE_LESSON",
                 lessonToUpdate: lesson
-            }))
+            }),
+                console.log("updated lessonId: " + lesson._id))
     },
 
-    deleteLesson: (item) => {
-        lessonService.deleteLesson(item._id)
+    deleteLesson: (lesson) => {
+        lessonService.deleteLesson(lesson._id)
             .then(status => dispatch({
                 type: "DELETE_LESSON",
-                lessonToDelete: item
-            }))
+                lessonToDelete: lesson
+            }),
+                console.log("deleted lessonId: " + lesson._id))
     },
 
     clearLesson: () => {
         dispatch({
             type: "CLEAR_LESSON"
         })
+        console.log("clearing lessons from useEffect hook")
     },
 
 

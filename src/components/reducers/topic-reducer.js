@@ -12,7 +12,7 @@ const topicReducer = (state = initialState, action) => {
                 ...state,
                 topics: [
                     ...state.topics,
-                    action.topic
+                    action.topicToCreate
                 ]
             }
 

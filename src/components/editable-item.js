@@ -6,7 +6,9 @@ import {Link} from "react-router-dom";
 // if we want to the edit state to only be available one at a time, we need to move it to the reducer OR make it part of the
 // state up here(in the url) so that everybody can read it. Somewhere a global variable that they can all see it and on check themselves
 const EditableItem = (
-    {   // these are default values I set
+    {   // these are props passed from module-list/lesson-tabs/topic-pills
+        // common default between the three like 'to' and 'item' I put here. Others like deleteItem and updateItem have
+        // their own default behaviour in their respective components
         to="/somewhere/to/go",
         deleteItem,
         updateItem,
