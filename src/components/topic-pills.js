@@ -14,13 +14,18 @@ const TopicPills = ({
                         findTopicsForLesson,
                         createTopic,
                         deleteTopic = (item) => alert("delete " + item._id),
-                        updateTopic = (topic) => alert("delete " + topic._id)
+                        updateTopic = (topic) => alert("delete " + topic._id),
+                        clearTopic = () => console.log("Hao say: clear topic did not work")
                     }) => {
     const {courseId, moduleId, lessonId, layout, topicId} = useParams()
     useEffect(() => {
         console.log("LOAD TOPICS FOR LESSON: " + lessonId)
-        if ((moduleId !== "undefined" && typeof moduleId !== "undefined") && (lessonId !== "undefined" && typeof lessonId !== "undefined")) {
+        if ((moduleId !== "undefined" && typeof moduleId !== "undefined") &&
+            (lessonId !== "undefined" && typeof lessonId !== "undefined")) {
             findTopicsForLesson(lessonId)
+        }
+        return () => {
+            clearTopic()
         }
     }, [lessonId], [moduleId])
 
@@ -36,15 +41,14 @@ const TopicPills = ({
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                                 updateItem={updateTopic}
                                 deleteItem={deleteTopic}
-                                // key={lesson._id}
                                 item={topic}/>
                         </li>
                     )
                 }
 
                 <li>
-                    <i onClick={() => createTopic(lessonId)} className="fas fa-plus fa-2x text-primary"></i>
-                    {/*<i onClick={() => {lessonId === undefined ? alert("pick a lesson first") : createTopic(lessonId)}} className="fas fa-plus fa-2x"></i>*/}
+                    <i onClick={() => {lessonId === undefined || moduleId === undefined ? alert("pick a lesson first") : createTopic(lessonId)}}
+                       className="fas fa-plus fa-2x text-primary"></i>
                 </li>
             </ul>
         </div>)
@@ -95,6 +99,12 @@ const dtpm = (dispatch) => ({
                 type: "DELETE_TOPIC",
                 topicToDelete: item
             }))
+    },
+
+    clearTopic: () => {
+         dispatch({
+            type: "CLEAR_TOPIC"
+         })
     },
 
 

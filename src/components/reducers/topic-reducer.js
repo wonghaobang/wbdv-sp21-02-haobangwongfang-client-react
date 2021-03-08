@@ -45,6 +45,11 @@ const topicReducer = (state = initialState, action) => {
                 })
             }
 
+        case "CLEAR_TOPIC":
+            return {
+                topics: []
+            }
+
         default:
             return state
     }

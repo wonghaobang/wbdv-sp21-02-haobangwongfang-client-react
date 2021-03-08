@@ -14,7 +14,8 @@ const LessonTabs = ({
                         findLessonsForModule,
                         createLesson,
                         deleteLesson = (item) => alert("delete " + item._id),
-                        updateLesson = (lesson) => alert("delete " + lesson._id)
+                        updateLesson = (lesson) => alert("delete " + lesson._id),
+                        clearLesson = () => console.log("Hao say: clear lesson did not work")
                     }) => {
     const {courseId, moduleId, lessonId, layout} = useParams()
     useEffect(() => {
@@ -22,6 +23,9 @@ const LessonTabs = ({
         if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
             console.log("moduleID is not undefined")
             findLessonsForModule(moduleId)
+        }
+        return () => {
+            clearLesson()
         }
     }, [moduleId])
 
@@ -34,20 +38,17 @@ const LessonTabs = ({
                         <li className="nav-item" key={lesson._id}>
                             <EditableItem
                                 active={lesson._id === lessonId}
-                                // to={`/courses/editor/${courseId}/${moduleId}/${lesson._id}`}
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                 updateItem={updateLesson}
                                 deleteItem={deleteLesson}
-                                // key={lesson._id}
                                 item={lesson}/>
 
                         </li>
                     )
                 }
                 <li>
-                    {/*<i onClick={() => createLessonForModule(moduleId)} className="fas fa-plus fa-2x"></i>*/}
                     <i onClick={() => {moduleId === undefined ? alert("pick a module first") : createLesson(moduleId)}}
-                       className="fas fa-plus fa-2x text-primary"></i>
+                       className="fas fa-plus fa-2x text-primary pl-3"></i>
                 </li>
             </ul>
         </div>)
@@ -98,6 +99,12 @@ const dtpm = (dispatch) => ({
                 type: "DELETE_LESSON",
                 lessonToDelete: item
             }))
+    },
+
+    clearLesson: () => {
+        dispatch({
+            type: "CLEAR_LESSON"
+        })
     },
 
 

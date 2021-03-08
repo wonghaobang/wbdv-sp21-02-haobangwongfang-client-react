@@ -24,10 +24,10 @@ const EditableItem = (
             {
                 !editing &&
                 <>
-                    <Link className={`nav-link ${active?'active':''}`} to={to}>
+                    <Link className={`nav-link ${active?'active':''} d-inline`} to={to}>
                         {item.title}
                     </Link>
-                    <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
+                    <i onClick={() => setEditing(true)} className="fas fa-edit float-right"></i>
                 </>
             }
 
@@ -40,16 +40,18 @@ const EditableItem = (
                                 ...cachedItem,
                                 title: e.target.value})}
                         value={cachedItem.title}/>
+
                     <i onClick={() => {
                         setEditing(false)
                         updateItem(cachedItem)
-                    }} className="fas fa-check"></i>
-                    <i onClick={() => deleteItem(item)} className="fas fa-times"></i>
+                    }} className="fas fa-check float-right"></i>
+                    <i onClick={() => deleteItem(item)} className="fas fa-times float-right pr-3"></i>
                 </>
             }
 
         </>
     )
 }
+
 
 export default EditableItem

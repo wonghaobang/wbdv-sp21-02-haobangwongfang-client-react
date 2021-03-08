@@ -11,10 +11,10 @@ import courseService from "../services/course-service";
 const ModuleList = (
     {
         myModules = [],
+        findModulesForCourse = (courseId) => console.log(courseId),
         createModule = () => alert("Create Module 234"),
         deleteModule = (item) => alert("delete " + item._id),
-        updateModule,
-        findModulesForCourse = (courseId) => console.log(courseId)
+        updateModule
     }) => {
 
     const {courseId, moduleId, layout} = useParams();
@@ -30,11 +30,9 @@ const ModuleList = (
                     myModules.map(module =>
                         <li key={module._id} className={`list-group-item ${module._id === moduleId ? 'active' : ''}`}>
                             <EditableItem
-                                // to={`/courses/editor/${courseId}/${module._id}`}
                                 to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                                 updateItem={updateModule}
                                 deleteItem={deleteModule}
-                                // key={module._id}
                                 active={true}
                                 item={module}/>
                         </li>

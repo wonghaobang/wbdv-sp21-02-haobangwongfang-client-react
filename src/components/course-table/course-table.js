@@ -40,9 +40,6 @@ class CourseTable extends React.Component {
                     {
                         this.props.courses.map((course, ndx) =>
                             <CourseRow
-                                // whenever you iterate/generate objects in an array like this, need to guarantee
-                                // that each element has a unique identifier.
-                                // Later on when this comes from the server, we are going to have an id and use that instead
                                 updateCourse={this.props.updateCourse}
                                 deleteCourse={this.props.deleteCourse}
                                 key={course._id}
