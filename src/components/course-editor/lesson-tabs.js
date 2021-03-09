@@ -95,7 +95,10 @@ const dtpm = (dispatch) => ({
                 type: "DELETE_LESSON",
                 lessonToDelete: lesson
             }),
-                console.log("deleted lessonId: " + lesson._id))
+                console.log("deleted lessonId: " + lesson._id),
+                dispatch({
+                    type: "CLEAR_TOPIC"
+                }))
     },
 
     clearLesson: () => {

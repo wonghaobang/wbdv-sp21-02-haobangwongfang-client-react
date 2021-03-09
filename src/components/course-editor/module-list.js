@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
 import moduleService from "../../services/module-service"
+import moduleReducer from "../reducers/modules-reducer";
 
 // good idea to initialize it to some default just in case it did not map well
 // all these are from reducer, these are not props
@@ -93,7 +94,13 @@ const dtpm = (dispatch) => {
                     type: "DELETE_MODULE",
                     moduleToDelete: module        // prof just used module (shortcut of module: module)
                 }),
-                    console.log("deleted moduleId: " + module._id))
+                    console.log("deleted moduleId: " + module._id),
+                    dispatch({
+                        type: "CLEAR_LESSON"
+                    }),
+                    dispatch({
+                        type: "CLEAR_TOPIC"
+                    }))
         },
     }
 }

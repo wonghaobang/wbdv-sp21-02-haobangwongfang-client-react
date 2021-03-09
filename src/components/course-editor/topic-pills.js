@@ -32,7 +32,7 @@ const TopicPills = ({
 
     return (
         <div>
-            <ul className="nav nav-pills">
+            <ul className="nav nav-pills pt-3">
                 {
                     topics.map(topic =>
                         <li className="nav-item" key={topic._id}>
