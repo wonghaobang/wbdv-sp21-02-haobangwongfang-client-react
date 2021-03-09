@@ -29,7 +29,7 @@ const EditableItem = (
                     <Link className={`nav-link ${active?'active':''} d-inline`} to={to}>
                         {item.title}
                         {/*putting it below will make clicking on the edit icon the new active item, which I don't think is correct*/}
-                        {/*<i onClick={() => setEditing(true)} className="fas fa-pencil-alt float-right"></i>*/}
+                        {/*<i onClick={() => setEditing(true)} className="fas fa-pencil-alt"></i>*/}
                     </Link>
                     <i onClick={() => setEditing(true)} className="fas fa-pencil-alt float-right"></i>
                 </>

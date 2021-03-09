@@ -23,7 +23,7 @@ const store = createStore(reducer)
 
 
 const CourseEditor = ({history}) => {
-    const {courseId, moduleId, lessonId, topicId} = useParams();
+    const {courseId, moduleId, lessonId, topicId, layout} = useParams();
     const [currentCourse, setCurrentCourse] = useState("")
 
     useEffect(() => {
@@ -35,7 +35,8 @@ const CourseEditor = ({history}) => {
         <Provider store={store}>
             <div>
                 <h2>
-                    <Link to="/courses/table">
+                    {/*<Link to="/courses/table">*/}
+                    <Link to={`/courses/${layout}`}>
                         <i onClick={() => console.log(`clicking the red x button! CourseId: ${courseId}, moduleId: ${moduleId}, lessonId: ${lessonId}, topicId: ${topicId}`)} className="fas fa-times text-danger pr-3"></i>
                     </Link>
                     {currentCourse}
