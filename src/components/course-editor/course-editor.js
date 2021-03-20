@@ -10,16 +10,19 @@ import lessonReducer from "../reducers/lesson-reducer";
 import courseService from "../../services/course-service";
 import topicReducer from "../reducers/topic-reducer";
 import TopicPills from "./topic-pills";
+import WidgetList from "./widgets/widget-list";
+import widgetReducer from "../reducers/widget-reducer";
 
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
     lessonReducer: lessonReducer,
-    topicReducer: topicReducer
+    topicReducer: topicReducer,
+    widgetReducer: widgetReducer,
 })
 
 
-const store = createStore(reducer)
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 const CourseEditor = ({history}) => {
@@ -34,8 +37,8 @@ const CourseEditor = ({history}) => {
 
         <Provider store={store}>
             <div>
+                {console.log("course editor render")}
                 <h2>
-                    {/*<Link to="/courses/table">*/}
                     <Link to={`/courses/${layout}`}>
                         <i onClick={() => console.log(`clicking the red x button! CourseId: ${courseId}, moduleId: ${moduleId}, lessonId: ${lessonId}, topicId: ${topicId}`)} className="fas fa-times text-danger pr-3"></i>
                     </Link>
@@ -54,6 +57,8 @@ const CourseEditor = ({history}) => {
                     <div className="col-8">
                         <LessonTabs/>
                         <TopicPills/>
+                        <br/>
+                        <WidgetList/>
                     </div>
                 </div>
             </div>

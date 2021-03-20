@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
 import moduleService from "../../services/module-service"
-import moduleReducer from "../reducers/modules-reducer";
+
 
 // good idea to initialize it to some default just in case it did not map well
 // all these are from reducer, these are not props
