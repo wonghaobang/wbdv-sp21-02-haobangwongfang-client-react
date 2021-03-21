@@ -1,5 +1,5 @@
-const WIDGETS_URL = "http://localhost:8080/api";
-
+// const WIDGETS_URL = "http://localhost:8080/api";
+const WIDGETS_URL = process.env.REACT_APP_WIDGETS_URL
 
 
 export const createWidget = (topicId, widget) =>
