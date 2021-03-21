@@ -26,7 +26,7 @@ const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.
 
 
 const CourseEditor = ({history}) => {
-    const {courseId, moduleId, lessonId, topicId, layout} = useParams();
+    const {courseId, moduleId, lessonId, topicId, layout, widgetId} = useParams();
     const [currentCourse, setCurrentCourse] = useState("")
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const CourseEditor = ({history}) => {
                     {/*</i>*/}
                 </h2>
 
-                <h5>courseId: {courseId} -> moduleId: {moduleId} -> lessonId: {lessonId} -> topicId: {topicId}</h5>
+                <h5>courseId: {courseId} -> moduleId: {moduleId} -> lessonId: {lessonId} -> topicId: {topicId} -> widgetId: {widgetId}</h5>
 
                 <div className="row">
                     <div className="col-4">

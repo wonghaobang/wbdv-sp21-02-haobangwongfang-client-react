@@ -1,5 +1,5 @@
 const WIDGETS_URL = "http://localhost:8080/api";
-// const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/001034982/lessons";
+
 
 
 export const createWidget = (topicId, widget) =>
