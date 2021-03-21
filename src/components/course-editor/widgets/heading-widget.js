@@ -2,7 +2,6 @@ import React from 'react'
 
 const HeadingWidget = ({widget, setWidget, editing}) =>
     <div>
-        {/*<h2>Heading Widget {widget.id}</h2>*/}
 
         { widget.size ===1 && <h1>{widget.text}</h1> }
         { widget.size ===2 && <h2>{widget.text}</h2> }

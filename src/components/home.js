@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import Exam from "../es6/exam";
-import YP from "../es6/exam-store"
+
 
 export default () =>
     <>

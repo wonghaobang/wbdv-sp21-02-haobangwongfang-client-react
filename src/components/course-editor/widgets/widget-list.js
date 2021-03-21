@@ -8,7 +8,7 @@ import widgetService from "../../../services/widget-service";
 const WidgetList = ({widgets, findWidgetsForTopic, createWidget, updateWidget, deleteWidget}) => {
     const {topicId} = useParams()
 
-    const [widget, setWidget] = useState({})
+    const [editingWidget, setEditingWidget] = useState({})
 
     useEffect(() => {
         findWidgetsForTopic(topicId)
@@ -19,40 +19,40 @@ const WidgetList = ({widgets, findWidgetsForTopic, createWidget, updateWidget, d
     return(
         <div>
             <i onClick={() => {topicId === undefined ? alert("pick a topic first") : createWidget(topicId)}} className="fas fa-plus float-right fa-2x"></i>
-            {/*<h1>Widget List {widget.id}</h1>*/}
-            <br/>
-            <br/>
+
+            <br/><br/>
             <ul className="list-group">
                 {
-                    widgets.map(_widget =>
-                        <li key={_widget.id} className="list-group-item">
+                    widgets.map(widget =>
+                        <li key={widget.id} className="list-group-item">
                             {
-                                _widget.id === widget.id &&
+                                widget.id === editingWidget.id &&
                                 <>
-                                    <i onClick={() => deleteWidget(_widget)} className="fas fa-trash float-right"></i>
+                                    <i onClick={() => deleteWidget(widget)} className="fas fa-trash float-right"></i>
                                     <i onClick={() => {
-                                        updateWidget(_widget.id, widget)
-                                        setWidget({})
-                                    }} className="fas fa-check float-right"></i>
+                                        updateWidget(widget.id, editingWidget)
+                                        setEditingWidget({})
+                                    }} className="fas fa-check float-right">
+                                    </i>
                                 </>
                             }
                             {
-                                _widget.id !== widget.id &&
-                                <i onClick={() => setWidget(_widget)} className="fas fa-cog float-right"></i>
+                                widget.id !== editingWidget.id &&
+                                <i onClick={() => setEditingWidget(widget)} className="fas fa-cog float-right"></i>
                             }
                             {
-                                _widget.type === "HEADING" &&
+                                widget.type === "HEADING" &&
                                 <HeadingWidget
-                                    setWidget={setWidget}
-                                    editing={_widget.id === widget.id}
-                                    widget={_widget}/>
+                                    setWidget={setEditingWidget}
+                                    editing={widget.id === editingWidget.id}
+                                    widget={widget}/>
                             }
                             {
-                                _widget.type === "PARAGRAPH" &&
+                                widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
-                                    setWidget={setWidget}
-                                    editing={_widget.id === widget.id}
-                                    widget={_widget}/>
+                                    setWidget={setEditingWidget}
+                                    editing={widget.id === editingWidget.id}
+                                    widget={widget}/>
                             }
                         </li>
                     )
