@@ -40,7 +40,7 @@ const CourseEditor = ({history}) => {
                 {console.log("course editor render")}
                 <h2>
                     <Link to={`/courses/${layout}`}>
-                        <i onClick={() => console.log(`clicking the red x button! CourseId: ${courseId}, moduleId: ${moduleId}, lessonId: ${lessonId}, topicId: ${topicId}`)} className="fas fa-times text-danger pr-3"></i>
+                        <i onClick={() => console.log(`clicking the red x button! CourseId: ${courseId}, moduleId: ${moduleId}, lessonId: ${lessonId}, topicId: ${topicId}, widgetId: ${widgetId}`)} className="fas fa-times text-danger pr-3"></i>
                     </Link>
                     {currentCourse}
                     {/*<i onClick={() => history.goBack()}*/}
