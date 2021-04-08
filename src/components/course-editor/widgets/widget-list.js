@@ -88,7 +88,7 @@ const WidgetList = ({widgets, findWidgetsForTopic, createWidget, updateWidget, d
                     )
                 }
 
-                {JSON.stringify(widgets)}
+                {/*{JSON.stringify(widgets)}*/}
 
             </ul>
         </div>
