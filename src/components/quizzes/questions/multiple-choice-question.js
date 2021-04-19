@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = ({question, graded, setGraded}) => {
     const [yourAnswer, setYourAnswer] = useState("")
-    const [graded, setGraded] = useState(false)
+    // const [graded, setGraded] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState("")
+    // const [disable, setDisable] = useState(false)
 
     return (
         <div>
@@ -30,9 +31,10 @@ const MultipleChoiceQuestion = ({question}) => {
                             ${selectedIndex === index && yourAnswer !== question.correct && graded ? "list-group-item-danger" : ""}
                             ${graded && question.correct === choice ? "list-group-item-success" : ""}`}>
                                 <label>
-                                    <input type="radio" name={question._id} className="mr-2"
+                                    <input type="radio" disabled={graded === true} name={question._id} className="mr-2"
                                            onClick={() => {
                                                setYourAnswer(choice)
+                                               question.answer = choice
                                                setSelectedIndex(index)
                                            }}
                                     />
@@ -51,7 +53,6 @@ const MultipleChoiceQuestion = ({question}) => {
             <br/>
 
             <div className="mb-2">Your answer: {yourAnswer}</div>
-            <button className="btn btn-success" onClick={() => setGraded(true)}>Grade</button>
 
             <hr/>
             <br/>

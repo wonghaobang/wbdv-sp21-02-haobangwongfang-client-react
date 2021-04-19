@@ -10,8 +10,8 @@ const QuizzesList = () => {
     useEffect(() => {
         quizService.findAllQuizzes().then((quizzes) => {
             setQuizzes(quizzes)
-        }, [])
-    })
+        })
+    },[])
 
     return (
         <div>
