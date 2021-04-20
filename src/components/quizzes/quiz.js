@@ -54,10 +54,9 @@ const Quiz = () => {
             </ul>
 
             <button className="btn btn-success btn-lg" onClick={handleQuizSubmit}>{graded ? 'Retake Quiz' : 'Submit'}</button>
-            {/*<button className="btn btn-primary btn-lg" onClick={handleShowAttempts}>{showAttempts ? 'Hide Attempts' : 'Show Attempts'}</button>*/}
 
             {
-
+                graded &&
                 attempts.map((attempt, ndx) => {
                     return(
                         <div key={attempt._id}> Attempt {ndx+1} : {attempt.score}</div>

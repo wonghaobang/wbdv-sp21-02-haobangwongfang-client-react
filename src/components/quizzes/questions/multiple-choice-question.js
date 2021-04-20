@@ -3,9 +3,7 @@ import React, {useState} from 'react'
 
 const MultipleChoiceQuestion = ({question, graded, setGraded}) => {
     const [yourAnswer, setYourAnswer] = useState("")
-    // const [graded, setGraded] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState("")
-    // const [disable, setDisable] = useState(false)
 
     return (
         <div>
