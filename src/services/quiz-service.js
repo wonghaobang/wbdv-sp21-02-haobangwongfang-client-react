@@ -9,13 +9,13 @@ export const findAllQuizzes = () =>
 
 
 
-export const findQuizById = (qid) => {
+export const findQuizById = (qid) =>
     fetch(`${QUIZZES_URL}/${qid}`)
         .then(response => response.json())
-}
 
 
-export const submitQuiz = (quizId, questions) => {
+
+export const submitQuiz = (quizId, questions) =>
     fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
         method: 'POST',
         body: JSON.stringify(questions),
@@ -24,15 +24,15 @@ export const submitQuiz = (quizId, questions) => {
         }
     })
         .then(response => response.json())
-}
 
 
 
-export const findAttemptsForQuiz = (quizId) => {
+
+export const findAttemptsForQuiz = (quizId) =>
     fetch(`${QUIZZES_URL}/${quizId}/attempts`)
         .then(response => response.json())
 
-}
+
 
 
 const api = {

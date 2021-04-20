@@ -10,6 +10,7 @@ const Quiz = () => {
     const [questions, setQuestions] = useState([])
     const [graded, setGraded] = useState(false)
     const [attempts, setAttempts] = useState([])
+    const [showAttempts, setShowAttempts] = useState(false)
 
     useEffect(() => {
         questionService.findQuestionsForQuiz(quizId).then((questions) => {
@@ -17,15 +18,19 @@ const Quiz = () => {
         })
     }, [])
 
+
     const handleQuizSubmit = () => {
         setGraded(!graded)
         if (graded === false) {                             // setGraded not working as intended
             quizService.submitQuiz(quizId, questions)
-            // await quizService.findAttemptsForQuiz(quizId)
 
         }
     }
 
+    const handleShowAttempts = () => {
+        setShowAttempts(!showAttempts)
+        quizService.findAttemptsForQuiz(quizId).then((data) => setAttempts(data))
+    }
 
 
     return (
@@ -49,15 +54,16 @@ const Quiz = () => {
             </ul>
 
             <button className="btn btn-success btn-lg" onClick={handleQuizSubmit}>{graded ? 'Retake Quiz' : 'Submit'}</button>
-            {/*<button className="btn btn-primary btn-lg" onClick={handleGetAttemptsHistory}>Show Attempts</button>*/}
+            <button className="btn btn-primary btn-lg" onClick={handleShowAttempts}>{showAttempts ? 'Hide Attempts' : 'Show Attempts'}</button>
 
-            {/*{*/}
-            {/*    attempts.map((attempt, ndx) => {*/}
-            {/*        return(*/}
-            {/*            <div key={attempt._id}> Attempt {ndx+1} : {attempt.score}</div>*/}
-            {/*        )*/}
-            {/*    })*/}
-            {/*}*/}
+            {
+                showAttempts &&
+                attempts.map((attempt, ndx) => {
+                    return(
+                        <div key={attempt._id}> Attempt {ndx+1} : {attempt.score}</div>
+                    )
+                })
+            }
         </div>
     )
 }
