@@ -9,6 +9,7 @@ const Quiz = () => {
     const history = useHistory()
     const [questions, setQuestions] = useState([])
     const [graded, setGraded] = useState(false)
+    const [attempts, setAttempts] = useState([])
 
     useEffect(() => {
         questionService.findQuestionsForQuiz(quizId).then((questions) => {
@@ -16,13 +17,15 @@ const Quiz = () => {
         })
     }, [])
 
-    const handleQuizSubmit = async () => {
+    const handleQuizSubmit = () => {
         setGraded(!graded)
         if (graded === false) {                             // setGraded not working as intended
-            await quizService.submitQuiz(quizId, questions)
-            await quizService.findAttemptsForQuiz(quizId)
+            quizService.submitQuiz(quizId, questions)
+            // await quizService.findAttemptsForQuiz(quizId)
+
         }
     }
+
 
 
     return (
@@ -46,6 +49,15 @@ const Quiz = () => {
             </ul>
 
             <button className="btn btn-success btn-lg" onClick={handleQuizSubmit}>{graded ? 'Retake Quiz' : 'Submit'}</button>
+            {/*<button className="btn btn-primary btn-lg" onClick={handleGetAttemptsHistory}>Show Attempts</button>*/}
+
+            {/*{*/}
+            {/*    attempts.map((attempt, ndx) => {*/}
+            {/*        return(*/}
+            {/*            <div key={attempt._id}> Attempt {ndx+1} : {attempt.score}</div>*/}
+            {/*        )*/}
+            {/*    })*/}
+            {/*}*/}
         </div>
     )
 }
